@@ -52,6 +52,16 @@ export async function createClient() {
           }
         },
       },
+      global: {
+        fetch: (url, options) => {
+          const controller = new AbortController()
+          const id = setTimeout(() => controller.abort(), 2000) // 2 second timeout
+          return fetch(url, {
+            ...options,
+            signal: controller.signal,
+          }).finally(() => clearTimeout(id))
+        }
+      }
     }
   )
 }

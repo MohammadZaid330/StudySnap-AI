@@ -9,6 +9,7 @@ import { useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { createClient } from "@/utils/supabase/client"
 import { getNotes, NoteItem, recordStudyActivity } from "@/utils/notes-store"
+import { toast } from "sonner"
 
 const DEFAULT_PHYSICS_NOTE: NoteItem = {
   id: "default-physics",
@@ -411,6 +412,60 @@ function HandwrittenContent() {
     fetchNote()
   }, [noteId])
 
+  const downloadPDF = async () => {
+    if (!note) {
+      toast.error("No note is loaded yet.", { id: "pdf-download" })
+      return
+    }
+
+    toast.loading("Generating your realistic handwritten PDF...", { id: "pdf-download" })
+
+    try {
+      const element = document.querySelector(".print-paper-sheet")
+      if (!element) {
+        toast.error("Handwritten sheet element not found.", { id: "pdf-download" })
+        return
+      }
+
+      if (!(window as any).html2pdf) {
+        const script = document.createElement("script")
+        script.src = "https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        script.integrity = "sha512-GsLlZN/3F2ErC5IfS51RRXXC6KV21XBpE5fYYttM1VUsAMrtxCkq5gq2tO240xxxgI18HcV3e+GCJ+27hwdecQ=="
+        script.crossOrigin = "anonymous"
+        script.referrerPolicy = "no-referrer"
+        
+        const loadPromise = new Promise((resolve, reject) => {
+          script.onload = resolve
+          script.onerror = reject
+        })
+        document.head.appendChild(script)
+        await loadPromise
+      }
+
+      const html2pdf = (window as any).html2pdf
+
+      const opt = {
+        margin: [0, 0, 0, 0],
+        filename: `${note.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-handwritten.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { 
+          scale: 2, 
+          useCORS: true,
+          backgroundColor: "#FDFBF7",
+          logging: false
+        },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      }
+
+      await html2pdf().set(opt).from(element).save()
+      toast.success("Downloaded handwritten PDF successfully!", { id: "pdf-download" })
+    } catch (error) {
+      console.error("PDF generation failed:", error)
+      toast.error("Failed to generate PDF. Opening system print dialog instead...", { id: "pdf-download" })
+      window.print()
+    }
+  }
+
   if (loading || !note) {
     return (
       <div className="min-h-[50vh] flex items-center justify-center">
@@ -476,6 +531,8 @@ function HandwrittenContent() {
             min-height: auto !important;
             box-shadow: none !important;
             border: none !important;
+            display: block !important;
+            overflow: visible !important;
           }
 
           /* Force print-paper-sheet to take full printable size with organic lines */
@@ -523,7 +580,7 @@ function HandwrittenContent() {
           <Button variant="outline" size="sm" className="rounded-xl">
             <Share2 className="mr-2 h-4 w-4" /> Share
           </Button>
-          <Button size="sm" className="rounded-xl bg-gradient-primary text-white border-0" onClick={() => window.print()}>
+          <Button size="sm" className="rounded-xl bg-gradient-primary text-white border-0" onClick={downloadPDF}>
             <Download className="mr-2 h-4 w-4" /> Download PDF
           </Button>
         </div>

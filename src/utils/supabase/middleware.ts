@@ -55,6 +55,16 @@ export async function updateSession(request: NextRequest) {
           )
         },
       },
+      global: {
+        fetch: (url, options) => {
+          const controller = new AbortController()
+          const id = setTimeout(() => controller.abort(), 2000) // 2 second timeout
+          return fetch(url, {
+            ...options,
+            signal: controller.signal,
+          }).finally(() => clearTimeout(id))
+        }
+      }
     }
   )
 
@@ -62,9 +72,13 @@ export async function updateSession(request: NextRequest) {
   // supabase.auth.getUser(). A simple mistake could make it very hard to debug
   // issues with users being randomly logged out.
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  let user = null
+  try {
+    const { data } = await supabase.auth.getUser()
+    user = data?.user || null
+  } catch (error) {
+    console.error('Supabase updateSession: Failed to authenticate session (offline or network error):', error)
+  }
 
   const isAuthPage = request.nextUrl.pathname.startsWith('/login') || request.nextUrl.pathname.startsWith('/signup')
   const isDashboardPage = request.nextUrl.pathname.startsWith('/dashboard')

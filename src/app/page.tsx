@@ -83,8 +83,8 @@ export default function LandingPage() {
             <span>The #1 AI Study Assistant for Students</span>
           </div>
         </motion.div>
-        
-        <motion.h1 
+
+        <motion.h1
           className="text-5xl sm:text-7xl font-bold tracking-tight mb-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -92,8 +92,8 @@ export default function LandingPage() {
         >
           Transform Long Lectures & PDFs into <span className="text-gradient">Smart Exam Notes</span>
         </motion.h1>
-        
-        <motion.p 
+
+        <motion.p
           className="text-lg sm:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -101,8 +101,8 @@ export default function LandingPage() {
         >
           AI-powered study assistant for quick revision, smart summaries, quizzes, and realistic handwritten notes. Ace your exams with zero stress.
         </motion.p>
-        
-        <motion.div 
+
+        <motion.div
           className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -122,22 +122,22 @@ export default function LandingPage() {
 
         {/* Floating Elements / Decorative sticky notes */}
         <div className="absolute top-1/2 left-0 -translate-x-1/2 hidden lg:block opacity-70 hover:opacity-100 transition-opacity">
-          <motion.div 
-            animate={{ y: [0, -20, 0], rotate: [-5, 0, -5] }} 
+          <motion.div
+            animate={{ y: [0, -20, 0], rotate: [-5, 0, -5] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
             className="sticky-note bg-yellow-200 dark:bg-yellow-900/40 text-yellow-900 dark:text-yellow-100 w-48 font-handwriting text-xl transform -rotate-6"
           >
             "Remember to revise Chapter 4!"
           </motion.div>
         </div>
-        
+
         <div className="absolute top-1/3 right-0 translate-x-1/3 hidden lg:block opacity-70 hover:opacity-100 transition-opacity">
-          <motion.div 
-            animate={{ y: [0, 20, 0], rotate: [5, 10, 5] }} 
+          <motion.div
+            animate={{ y: [0, 20, 0], rotate: [5, 10, 5] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
             className="sticky-note bg-cyan-200 dark:bg-cyan-900/40 text-cyan-900 dark:text-cyan-100 w-52 font-handwriting text-xl transform rotate-12"
           >
-            Newton's Laws:<br/>1. Inertia<br/>2. F=ma<br/>3. Action/Reaction
+            Newton's Laws:<br />1. Inertia<br />2. F=ma<br />3. Action/Reaction
           </motion.div>
         </div>
       </section>
@@ -151,7 +151,7 @@ export default function LandingPage() {
               Everything you need to convert hours of studying into minutes of high-yield revision.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, i) => (
               <motion.div
@@ -243,7 +243,7 @@ export default function LandingPage() {
             {faqs.map((faq, index) => {
               const isOpen = openFaq === index
               return (
-                <div 
+                <div
                   key={index}
                   className="glass-panel rounded-2xl overflow-hidden transition-all duration-300 border border-muted/50"
                 >
@@ -267,7 +267,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      
+
       {/* Call to Action */}
       <section className="py-24 relative overflow-hidden">
         <div className="container mx-auto px-4 md:px-6 relative z-10">
