@@ -35,15 +35,6 @@ export default function AnalyticsPage() {
     }
     fetchUserAndAnalytics()
   }, [])
-
-  if (loading) {
-    return (
-      <div className="min-h-[50vh] flex items-center justify-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-      </div>
-    )
-  }
-
   // Count topics for breakdown
   const categoryCounts = React.useMemo(() => {
     const counts = { ml: 0, math: 0, biology: 0, general: 0 }
@@ -61,6 +52,15 @@ export default function AnalyticsPage() {
     })
     return counts
   }, [notes])
+
+  if (loading) {
+    return (
+      <div className="min-h-[50vh] flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      </div>
+    )
+  }
+
 
   const totalCategorized = notes.length || 1
 
