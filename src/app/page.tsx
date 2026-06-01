@@ -80,7 +80,7 @@ export default function LandingPage() {
         >
           <div className="mb-6 inline-flex items-center rounded-full border bg-background/50 backdrop-blur px-3 py-1 text-sm font-medium">
             <Sparkles className="mr-2 h-4 w-4 text-primary" />
-            <span>The AI Study Assistant for Students</span>
+            <span>The #1 AI Study Assistant for Students</span>
           </div>
         </motion.div>
 
