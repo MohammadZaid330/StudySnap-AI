@@ -4,14 +4,14 @@ import * as React from "react"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { motion } from "framer-motion"
-import { 
-  BarChart3, 
-  BrainCircuit, 
-  FileText, 
-  LayoutDashboard, 
-  LogOut, 
-  Settings, 
-  StickyNote, 
+import {
+  BarChart3,
+  BrainCircuit,
+  FileText,
+  LayoutDashboard,
+  LogOut,
+  Settings,
+  StickyNote,
   Upload
 } from "lucide-react"
 
@@ -38,7 +38,7 @@ export function DashboardSidebar() {
     } catch (err) {
       console.error("SignOut error:", err)
     }
-    
+
     // Clear all possible cookies (including mock cookies)
     if (typeof document !== 'undefined') {
       document.cookie = 'mock-user-session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
@@ -46,7 +46,7 @@ export function DashboardSidebar() {
       document.cookie = 'sb-access-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
       document.cookie = 'sb-refresh-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
     }
-    
+
     // Hard refresh/navigation to login page to reset client states and bypass Next Router cache
     window.location.href = "/login"
   }
@@ -72,8 +72,8 @@ export function DashboardSidebar() {
               <span
                 className={cn(
                   "flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors relative overflow-hidden",
-                  isActive 
-                    ? "text-primary" 
+                  isActive
+                    ? "text-primary"
                     : "text-muted-foreground hover:bg-muted hover:text-foreground"
                 )}
               >
@@ -94,13 +94,13 @@ export function DashboardSidebar() {
 
       <div className="p-4 mt-auto border-t">
         <div className="space-y-1">
-          <Link href="/dashboard/settings">
+          <Link href="/dashboard">
             <span className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors">
               <Settings className="h-5 w-5" />
               Settings
             </span>
           </Link>
-          <button 
+          <button
             onClick={handleLogout}
             className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-destructive hover:bg-destructive/10 transition-colors"
           >
