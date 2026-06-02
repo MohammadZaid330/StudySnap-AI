@@ -1,5 +1,7 @@
 # StudySnap AI 📚🤖
 
+🌐 **Live Demo:** https://study-snap-ai-two.vercel.app
+
 An AI-powered study assistant that transforms your notes, PDFs, and study materials into interactive learning experiences including flashcards, quizzes, summaries, and Q&A sessions.
 
 ---
@@ -12,31 +14,36 @@ An AI-powered study assistant that transforms your notes, PDFs, and study materi
 - 🗣️ Oral Q&A practice
 - 🔊 Audio playback for hands-free studying
 - 📈 Spaced repetition learning system
-- 💾 Offline-first architecture
 - 🌙 Beautiful dark-themed UI
-- 📱 Cross-platform support with React Native & Expo
+- 🔐 Secure Authentication with Google Login
+- 📱 Responsive Design
 
 ---
 
 ## 🛠️ Tech Stack
 
 ### Frontend
-- React Native
-- Expo SDK 54
+- Next.js 15
+- React
 - TypeScript
-- Expo Router
-- React Native Reanimated
+- Tailwind CSS
+- Framer Motion
+
+### Backend & Database
+- Supabase
+- PostgreSQL
 
 ### AI Integration
 - Google Gemini API
-- JSON-based structured responses
-- Multi-model fallback system
 
-### Storage & Utilities
-- AsyncStorage
-- Expo File System
-- Expo Speech
-- Expo AV
+### Deployment
+- Vercel
+
+---
+
+## 🌐 Live Website
+
+👉 https://study-snap-ai-two.vercel.app
 
 ---
 
@@ -45,7 +52,7 @@ An AI-powered study assistant that transforms your notes, PDFs, and study materi
 Clone the repository:
 
 ```bash
-git clone https://github.com/samarth-mahalkar/StudySnap-AI.git
+git clone https://github.com/MohammadZaid330/StudySnap-AI.git
 cd StudySnap-AI
 ```
 
@@ -55,56 +62,42 @@ Install dependencies:
 npm install
 ```
 
-Start the development server:
+Run the development server:
 
 ```bash
-npx expo start
+npm run dev
+```
+
+Open:
+
+```text
+http://localhost:3000
 ```
 
 ---
 
-## 🔑 Environment Setup
+## 🔑 Environment Variables
 
-Create a `.env` file in the root directory and add your Gemini API key:
+Create a `.env.local` file and add:
 
 ```env
-EXPO_PUBLIC_GEMINI_API_KEY=your_api_key_here
-```
-
-Get your API key from Google AI Studio:
-https://aistudio.google.com/
-
----
-
-## 📱 Running the App
-
-### Android
-```bash
-npx expo run:android
-```
-
-### iOS
-```bash
-npx expo run:ios
-```
-
-### Web
-```bash
-npm run web
+NEXT_PUBLIC_SUPABASE_URL=https://envfdjgpozisxoyliiio.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVudmZkamdwb3ppc3hveWxpaWlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkyNTE1NDAsImV4cCI6MjA5NDgyNzU0MH0.8FKp1aRXAwxWJXHZ4Wpj55qQaE16XqWpSfTN7VGK5zY
+GEMINI_API_KEY=AIzaSyCCt8Bk07AkSFDmDsEH5ZZNBAZgXtBZoBI
 ```
 
 ---
 
-## 🧠 How It Works
+## 📚 How It Works
 
-1. Upload study material or paste notes
-2. AI analyzes the content
+1. Upload study material or paste notes.
+2. AI analyzes the content.
 3. StudySnap generates:
    - Flashcards
    - Summaries
    - Quizzes
-   - Oral Q&A
-4. Track progress with spaced repetition
+   - Q&A Practice
+4. Study smarter and improve retention.
 
 ---
 
@@ -112,27 +105,31 @@ npm run web
 
 ```bash
 StudySnap-AI/
-│── app/
-│── components/
-│── assets/
-│── utils/
-│── services/
-│── hooks/
-│── constants/
-│── package.json
-│── app.json
-│── tsconfig.json
+│
+├── src/
+│   ├── app/
+│   ├── components/
+│   ├── lib/
+│   ├── hooks/
+│   └── utils/
+│
+├── public/
+├── package.json
+├── tsconfig.json
+├── next.config.ts
+└── README.md
 ```
 
 ---
 
-## ✨ Future Improvements
+## ✨ Future Scope
 
-- ☁️ Cloud sync
-- 👥 Collaborative study rooms
-- 📊 Analytics dashboard
-- 🎯 Personalized recommendations
-- 🧩 More AI model integrations
+- 📊 Analytics Dashboard
+- 👥 Collaborative Study Rooms
+- ☁️ Cloud Sync
+- 🎯 Personalized Learning Recommendations
+- 📱 Mobile Application
+- 🌍 Multi-language Support
 
 ---
 
@@ -150,7 +147,7 @@ git checkout -b feature/AmazingFeature
 3. Commit your changes
 
 ```bash
-git commit -m "Add some AmazingFeature"
+git commit -m "Add AmazingFeature"
 ```
 
 4. Push to the branch
@@ -168,10 +165,4 @@ git push origin feature/AmazingFeature
 This project is licensed under the MIT License.
 
 ---
-
-## 👨‍💻 Author
-
-Developed by Samarth Mahalkar
-
-GitHub Repository:
-https://github.com/samarth-mahalkar/StudySnap-AI
+⭐ If you like this project, don't forget to star the repository!
